@@ -1,4 +1,4 @@
-import { dbRun, dbGet, dbAll, queryCache, CACHE_TTL } from "./adaptive-connection"
+import { dbRun, dbGet, dbAll, queryCache, CACHE_TTL } from "./unified-connection"
 
 export interface Team {
   id: number

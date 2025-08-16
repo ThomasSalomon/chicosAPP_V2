@@ -1,4 +1,4 @@
-import { dbRun, dbGet, dbAll } from "./adaptive-connection"
+import { dbRun, dbGet, dbAll } from "./unified-connection"
 
 export interface User {
   id: number

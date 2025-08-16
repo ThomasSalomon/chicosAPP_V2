@@ -2,7 +2,7 @@
 export { userRepository } from "./users"
 export { teamRepository } from "./teams"
 export { playerRepository } from "./players"
-export { dbRun, dbGet, dbAll, queryCache, CACHE_TTL, initDatabase } from "./adaptive-connection"
+export { dbRun, dbGet, dbAll, queryCache, CACHE_TTL, initDatabase } from "./unified-connection"
 
 // Re-exportar tipos
 export type { User } from "./users"
