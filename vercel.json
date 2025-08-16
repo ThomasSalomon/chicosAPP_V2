@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "name": "academia-futbol",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "env": {
+    "JWT_SECRET": "@jwt-secret",
+    "NEXT_PUBLIC_APP_NAME": "Academia de Fútbol",
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "regions": ["iad1"],
+  "framework": "nextjs"
+}
