@@ -1,4 +1,4 @@
-import { dbRun, dbGet, dbAll, queryCache, CACHE_TTL } from "./connection"
+import { dbRun, dbGet, dbAll, queryCache, CACHE_TTL } from "./adaptive-connection"
 
 export interface Player {
   id: number
