@@ -3,149 +3,152 @@
 
 const isVercelEnvironment = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production'
 
-if (isVercelEnvironment) {
-  // En producción (Vercel), usar configuración compatible
-  console.log('Using Vercel-compatible database configuration')
-  
-  // Datos en memoria para demostración
-  const users = [
-    {
-      id: 1,
-      username: 'admin',
-      email: 'admin@academia.com',
-      password: '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password: 'admin123'
-      role: 'admin',
-      created_at: new Date().toISOString()
-    },
-    {
-      id: 2,
-      username: 'coach1',
-      email: 'coach@academia.com',
-      password: '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password: 'coach123'
-      role: 'coach',
-      created_at: new Date().toISOString()
-    },
-    {
-      id: 3,
-      username: 'parent1',
-      email: 'parent@academia.com',
-      password: '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password: 'parent123'
-      role: 'parent',
-      created_at: new Date().toISOString()
-    }
-  ]
+// Datos en memoria para demostración
+const users = [
+  {
+    id: 1,
+    username: 'admin',
+    email: 'admin@academia.com',
+    password: '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password: 'admin123'
+    role: 'admin',
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 2,
+    username: 'coach1',
+    email: 'coach@academia.com',
+    password: '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password: 'coach123'
+    role: 'coach',
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 3,
+    username: 'parent1',
+    email: 'parent@academia.com',
+    password: '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password: 'parent123'
+    role: 'parent',
+    created_at: new Date().toISOString()
+  }
+]
 
-  const teams = [
-    {
-      id: 1,
-      name: 'Leones Sub-12',
-      category: 'Sub-12',
-      coach_id: 2,
-      created_at: new Date().toISOString()
-    },
-    {
-      id: 2,
-      name: 'Águilas Sub-14',
-      category: 'Sub-14',
-      coach_id: 2,
-      created_at: new Date().toISOString()
-    },
-    {
-      id: 3,
-      name: 'Tigres Sub-16',
-      category: 'Sub-16',
-      coach_id: 2,
-      created_at: new Date().toISOString()
-    },
-    {
-      id: 4,
-      name: 'Halcones Sub-18',
-      category: 'Sub-18',
-      coach_id: 2,
-      created_at: new Date().toISOString()
-    }
-  ]
+const teams = [
+  {
+    id: 1,
+    name: 'Leones Sub-12',
+    category: 'Sub-12',
+    coach_id: 2,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 2,
+    name: 'Águilas Sub-14',
+    category: 'Sub-14',
+    coach_id: 2,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 3,
+    name: 'Tigres Sub-16',
+    category: 'Sub-16',
+    coach_id: 2,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 4,
+    name: 'Halcones Sub-18',
+    category: 'Sub-18',
+    coach_id: 2,
+    created_at: new Date().toISOString()
+  }
+]
 
-  const players = [
-    {
-      id: 1,
-      name: 'Carlos Rodríguez',
-      birth_date: '2012-03-15',
-      position: 'Delantero',
-      team_id: 1,
-      parent_contact: 'maria.rodriguez@email.com',
-      is_active: true,
-      registration_date: new Date().toISOString()
-    },
-    {
-      id: 2,
-      name: 'Ana García',
-      birth_date: '2011-07-22',
-      position: 'Mediocampista',
-      team_id: 1,
-      parent_contact: 'pedro.garcia@email.com',
-      is_active: true,
-      registration_date: new Date().toISOString()
-    },
-    {
-      id: 3,
-      name: 'Luis Martínez',
-      birth_date: '2010-11-08',
-      position: 'Defensor',
-      team_id: 2,
-      parent_contact: 'carmen.martinez@email.com',
-      is_active: true,
-      registration_date: new Date().toISOString()
-    },
-    {
-      id: 4,
-      name: 'Sofia López',
-      birth_date: '2009-05-30',
-      position: 'Portera',
-      team_id: 2,
-      parent_contact: 'juan.lopez@email.com',
-      is_active: true,
-      registration_date: new Date().toISOString()
-    },
-    {
-      id: 5,
-      name: 'Diego Fernández',
-      birth_date: '2008-12-12',
-      position: 'Delantero',
-      team_id: 3,
-      parent_contact: 'lucia.fernandez@email.com',
-      is_active: true,
-      registration_date: new Date().toISOString()
-    },
-    {
-      id: 6,
-      name: 'Isabella Torres',
-      birth_date: '2007-09-18',
-      position: 'Mediocampista',
-      team_id: 3,
-      parent_contact: 'roberto.torres@email.com',
-      is_active: true,
-      registration_date: new Date().toISOString()
-    },
-    {
-      id: 7,
-      name: 'Mateo Ruiz',
-      birth_date: '2006-04-25',
-      position: 'Defensor',
-      team_id: 4,
-      parent_contact: 'patricia.ruiz@email.com',
-      is_active: true,
-      registration_date: new Date().toISOString()
-    }
-  ]
+const players = [
+  {
+    id: 1,
+    name: 'Carlos Rodríguez',
+    birth_date: '2012-03-15',
+    position: 'Delantero',
+    team_id: 1,
+    parent_contact: 'maria.rodriguez@email.com',
+    is_active: true,
+    registration_date: new Date().toISOString()
+  },
+  {
+    id: 2,
+    name: 'Ana García',
+    birth_date: '2011-07-22',
+    position: 'Mediocampista',
+    team_id: 1,
+    parent_contact: 'pedro.garcia@email.com',
+    is_active: true,
+    registration_date: new Date().toISOString()
+  },
+  {
+    id: 3,
+    name: 'Luis Martínez',
+    birth_date: '2010-11-08',
+    position: 'Defensor',
+    team_id: 2,
+    parent_contact: 'carmen.martinez@email.com',
+    is_active: true,
+    registration_date: new Date().toISOString()
+  },
+  {
+    id: 4,
+    name: 'Sofia López',
+    birth_date: '2009-05-30',
+    position: 'Portera',
+    team_id: 2,
+    parent_contact: 'juan.lopez@email.com',
+    is_active: true,
+    registration_date: new Date().toISOString()
+  },
+  {
+    id: 5,
+    name: 'Diego Fernández',
+    birth_date: '2008-12-12',
+    position: 'Delantero',
+    team_id: 3,
+    parent_contact: 'lucia.fernandez@email.com',
+    is_active: true,
+    registration_date: new Date().toISOString()
+  },
+  {
+    id: 6,
+    name: 'Isabella Torres',
+    birth_date: '2007-09-18',
+    position: 'Mediocampista',
+    team_id: 3,
+    parent_contact: 'roberto.torres@email.com',
+    is_active: true,
+    registration_date: new Date().toISOString()
+  },
+  {
+    id: 7,
+    name: 'Mateo Ruiz',
+    birth_date: '2006-04-25',
+    position: 'Defensor',
+    team_id: 4,
+    parent_contact: 'patricia.ruiz@email.com',
+    is_active: true,
+    registration_date: new Date().toISOString()
+  }
+]
 
-  // Funciones para Vercel (datos en memoria)
-  export const dbRun = async (sql: string, params: any[] = []): Promise<{ lastID: number; changes: number }> => {
+// Funciones de base de datos
+export const dbRun = async (sql: string, params: any[] = []): Promise<{ lastID: number; changes: number }> => {
+  if (isVercelEnvironment) {
     console.log('Vercel dbRun:', sql, params)
     return { lastID: 1, changes: 1 }
+  } else {
+    // En desarrollo, usar SQLite
+    const sqlite = await import('./connection')
+    return sqlite.dbRun(sql, params)
   }
+}
 
-  export const dbGet = async (sql: string, params: any[] = []): Promise<any> => {
+export const dbGet = async (sql: string, params: any[] = []): Promise<any> => {
+  if (isVercelEnvironment) {
     console.log('Vercel dbGet:', sql, params)
     
     if (sql.includes('users') && sql.includes('email')) {
@@ -159,9 +162,15 @@ if (isVercelEnvironment) {
     }
     
     return null
+  } else {
+    // En desarrollo, usar SQLite
+    const sqlite = await import('./connection')
+    return sqlite.dbGet(sql, params)
   }
+}
 
-  export const dbAll = async (sql: string, params: any[] = []): Promise<any[]> => {
+export const dbAll = async (sql: string, params: any[] = []): Promise<any[]> => {
+  if (isVercelEnvironment) {
     console.log('Vercel dbAll:', sql, params)
     
     if (sql.includes('users')) {
@@ -177,23 +186,15 @@ if (isVercelEnvironment) {
     }
     
     return []
+  } else {
+    // En desarrollo, usar SQLite
+    const sqlite = await import('./connection')
+    return sqlite.dbAll(sql, params)
   }
-
-  export const queryCache = new Map<string, any>()
-  export const CACHE_TTL = 60 * 1000
-
-} else {
-  // En desarrollo, usar SQLite
-  console.log('Using SQLite database configuration for development')
-  
-  const sqlite = require('./connection')
-  
-  export const dbRun = sqlite.dbRun
-  export const dbGet = sqlite.dbGet
-  export const dbAll = sqlite.dbAll
-  export const queryCache = sqlite.queryCache
-  export const CACHE_TTL = sqlite.CACHE_TTL
 }
+
+export const queryCache = new Map<string, any>()
+export const CACHE_TTL = 60 * 1000
 
 // Función común para inicialización
 export const initDatabase = async () => {

@@ -1,4 +1,3 @@
-import sqlite3 from "sqlite3"
 import path from "path"
 import fs from "fs"
 
@@ -11,44 +10,52 @@ if (!fs.existsSync(dbDir)) {
   fs.mkdirSync(dbDir, { recursive: true })
 }
 
-// Inicializar base de datos
-const db = (() => {
-  const instance = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-      console.error("Error conectando a SQLite:", err.message)
-    } else {
-      console.log("Conectado a la base de datos SQLite local")
-    }
-  })
-  instance.configure('busyTimeout', 5000)
-  return instance
-})()
+// Importación dinámica de sqlite3 para evitar errores en Vercel
+let db: any = null
+
+const getDatabase = async () => {
+  if (!db) {
+    const sqlite3 = await import('sqlite3')
+    db = new sqlite3.default.Database(dbPath, (err: any) => {
+      if (err) {
+        console.error("Error conectando a SQLite:", err.message)
+      } else {
+        console.log("Conectado a la base de datos SQLite local")
+      }
+    })
+    db.configure('busyTimeout', 5000)
+  }
+  return db
+}
 
 export const queryCache = new Map<string, any>()
 export const CACHE_TTL = 60 * 1000 // 1 minuto
 
 // Promisificar métodos para usar async/await
-export const dbRun = (sql: string, params: any[] = []): Promise<{ lastID: number; changes: number }> => {
+export const dbRun = async (sql: string, params: any[] = []): Promise<{ lastID: number; changes: number }> => {
+  const database = await getDatabase()
   return new Promise((resolve, reject) => {
-    db.run(sql, params, function(err) {
+    database.run(sql, params, function(err: any) {
       if (err) reject(err)
       else resolve({ lastID: this.lastID, changes: this.changes })
     })
   })
 }
 
-export const dbGet = (sql: string, params: any[] = []): Promise<any> => {
+export const dbGet = async (sql: string, params: any[] = []): Promise<any> => {
+  const database = await getDatabase()
   return new Promise((resolve, reject) => {
-    db.get(sql, params, (err, row) => {
+    database.get(sql, params, (err: any, row: any) => {
       if (err) reject(err)
       else resolve(row)
     })
   })
 }
 
-export const dbAll = (sql: string, params: any[] = []): Promise<any[]> => {
+export const dbAll = async (sql: string, params: any[] = []): Promise<any[]> => {
+  const database = await getDatabase()
   return new Promise((resolve, reject) => {
-    db.all(sql, params, (err, rows) => {
+    database.all(sql, params, (err: any, rows: any[]) => {
       if (err) reject(err)
       else resolve(rows)
     })
@@ -229,4 +236,4 @@ const initTables = async () => {
 // Inicializar tablas al cargar el módulo
 initTables()
 
-export { db }
+export { getDatabase as db }
